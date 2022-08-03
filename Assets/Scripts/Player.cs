@@ -4,36 +4,28 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-    private Rigidbody2D rigidBody2D;
+    public float moveSpeed = 5f;
 
-    private Vector2 movement;
+    public Rigidbody2D rb;
 
-    private void Start()
-    {
-        // Get Rigidbody2D
-        rigidBody2D = GetComponent<Rigidbody2D>();
-    }
+    public Animator animator;
 
-    private void Update()
+    Vector2 movement;
+
+    void Update()
     {
         // Get Input Values
         movement.x = Input.GetAxisRaw("Horizontal");
         movement.y = Input.GetAxisRaw("Vertical");
+
+        animator.SetFloat("Horizontal", movement.x);
+        animator.SetFloat("Vertical", movement.y);
+        animator.SetFloat("Speed", movement.sqrMagnitude);
     }
 
-    private void FixedUpdate()
+    void FixedUpdate()
     {
-        // Swap sprite direction
-        if (movement.x > 0)
-        {
-            transform.localScale = Vector3.one;
-        }
-        else if (movement.x < 0)
-        {
-            transform.localScale = new Vector3(-1, 1, 1);
-        }
-
         // Make movement
-        rigidBody2D.MovePosition(rigidBody2D.position + movement * Time.fixedDeltaTime);
+        rb.MovePosition(rb.position + movement * moveSpeed * Time.fixedDeltaTime);
     }
 }
