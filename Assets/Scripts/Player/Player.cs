@@ -8,6 +8,8 @@ public class Player : MonoBehaviour
 
     private Vector2 movement;
 
+    public LayerMask enemiesLayer;
+
     private void Start()
     {
         // Get Rigidbody2D
@@ -35,5 +37,19 @@ public class Player : MonoBehaviour
 
         // Make movement
         rigidBody2D.MovePosition(rigidBody2D.position + movement * Time.fixedDeltaTime);
+
+        // Enemies encounter
+        CheckForEncounters();
+    }
+
+    private void CheckForEncounters()
+    {
+        if (Physics2D.OverlapCircle(transform.position, 0.2f, enemiesLayer) != null)
+        {
+            if (Random.Range(1,101) <= 10)
+            {
+                Debug.Log("Encountered an enemy !");
+            }
+        }
     }
 }
