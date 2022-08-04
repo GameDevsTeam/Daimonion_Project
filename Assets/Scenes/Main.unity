@@ -3213,6 +3213,9 @@ MonoBehaviour:
   moveSpeed: 1
   rb: {fileID: 846758272}
   animator: {fileID: 846758276}
+  enemiesLayer:
+    serializedVersion: 2
+    m_Bits: 64
 --- !u!212 &846758269
 SpriteRenderer:
   m_ObjectHideFlags: 0
