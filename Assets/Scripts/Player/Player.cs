@@ -15,9 +15,10 @@ public class Player : MonoBehaviour
     private LayerMask enemiesLayer;
 
     // Parameters for Battle Scene transition
-    LevelLoader levelLoader;
+    BattleLoaderScript battleLoader;
     [SerializeField]
-    GameObject levelLoaderCanvas;
+    GameObject battleLoaderCanvas;
+    public static bool playerControlsEnabled = true;
 
     private void Awake()
     {
@@ -25,14 +26,22 @@ public class Player : MonoBehaviour
         animator = GetComponent<Animator>();
 
         // Get access to LevelLoader script class
-        levelLoader = levelLoaderCanvas.GetComponent<LevelLoader>();
+        battleLoader = battleLoaderCanvas.GetComponent<BattleLoaderScript>();
     }
 
     void Update()
     {
-        // Get Input Values
-        movement.x = Input.GetAxisRaw("Horizontal");
-        movement.y = Input.GetAxisRaw("Vertical");
+        if (playerControlsEnabled)
+        {
+            // Get Input Values
+            movement.x = Input.GetAxisRaw("Horizontal");
+            movement.y = Input.GetAxisRaw("Vertical");
+        }
+        else
+        {
+            // Set Input Values to 0
+            movement = new Vector2();
+        }
 
         animator.SetFloat("Horizontal", movement.x);
         animator.SetFloat("Vertical", movement.y);
@@ -46,7 +55,7 @@ public class Player : MonoBehaviour
     }
 
     void FixedUpdate()
-    {
+    {    
         // Make movement
         rb.MovePosition(rb.position + movement * moveSpeed * Time.fixedDeltaTime);
     }
@@ -56,9 +65,11 @@ public class Player : MonoBehaviour
     {
         if(Physics2D.OverlapCircle(transform.position, 0.2f, enemiesLayer) != null)
         {
-            if(Random.Range(1, 101) <= 2)
+            if(Random.Range(1, 1001) <= 2)
             {
-                levelLoader.LoadNextLevel();
+                playerControlsEnabled = false;
+
+                battleLoader.LoadBattleScene("BattleScene");
             }
         }
     }

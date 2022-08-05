@@ -25,6 +25,8 @@ public class LevelLoader : MonoBehaviour
 
     public IEnumerator LoadLevel(int levelIndex)
     {
+        StopPlayerScript();
+
         // Play animation
         transition.SetTrigger("Start");
 
@@ -33,5 +35,15 @@ public class LevelLoader : MonoBehaviour
 
         // Load scene
         SceneManager.LoadScene(levelIndex);
+    }
+
+    public void StopPlayerScript()
+    {
+        GameObject.Find("player_0").GetComponent<Player>().enabled = false;
+    }
+
+    public void RestartPlayerScript()
+    {
+        GameObject.Find("player_0").GetComponent<Player>().enabled = true;
     }
 }

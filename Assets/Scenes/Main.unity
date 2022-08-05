@@ -3216,7 +3216,7 @@ MonoBehaviour:
   enemiesLayer:
     serializedVersion: 2
     m_Bits: 64
-  levelLoaderCanvas: {fileID: 1108689223}
+  battleLoaderCanvas: {fileID: 1261549388}
 --- !u!212 &846758269
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -3683,11 +3683,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4496430224212250975, guid: cb6c3f3c76cfa7447981c282184504a4, type: 3}
   m_PrefabInstance: {fileID: 1065196790}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &1108689223 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1323728536739106528, guid: cd6672d3f2ebe264ab8e201a5e7af95c, type: 3}
-  m_PrefabInstance: {fileID: 2978873384137785173}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1111428953
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3963,6 +3958,11 @@ SortingGroup:
 BoxCollider2D:
   m_CorrespondingSourceObject: {fileID: 553003783182602546, guid: cb6c3f3c76cfa7447981c282184504a4, type: 3}
   m_PrefabInstance: {fileID: 1111428953}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1261549388 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1323728536739106528, guid: cd6672d3f2ebe264ab8e201a5e7af95c, type: 3}
+  m_PrefabInstance: {fileID: 2978873384137785173}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &1323923336 stripped
 GameObject:
@@ -21019,7 +21019,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1323728536739106528, guid: cd6672d3f2ebe264ab8e201a5e7af95c, type: 3}
       propertyPath: m_Name
-      value: LevelLoader
+      value: BattleLoader
+      objectReference: {fileID: 0}
+    - target: {fileID: 3294640686285662118, guid: cd6672d3f2ebe264ab8e201a5e7af95c, type: 3}
+      propertyPath: m_Enabled
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8957561464238010736, guid: cd6672d3f2ebe264ab8e201a5e7af95c, type: 3}
       propertyPath: m_RootOrder
