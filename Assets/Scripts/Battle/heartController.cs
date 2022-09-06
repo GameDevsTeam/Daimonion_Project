@@ -38,7 +38,6 @@ public class heartController : MonoBehaviour
     public bool isPlatformer;
 
 
-
     // Start is called before the first frame update
     void Start()
     {
@@ -54,8 +53,8 @@ public class heartController : MonoBehaviour
         dashCooldown = 2.0f;
         tr = gameObject.GetComponent<TrailRenderer>();
 
-        jumpForce = 6f;
-        jumpTime = 0.5f;
+        jumpForce = 4f;
+        jumpTime = 0.3f;
         fallMultiplier = 0f;
         jumpMultiplier = 1.5f;
         isJumping = false;
@@ -63,6 +62,7 @@ public class heartController : MonoBehaviour
         
         isTopDown = true;
         isPlatformer = false;
+
     }
 
     // Update is called once per frame
@@ -71,7 +71,7 @@ public class heartController : MonoBehaviour
         moveHorizontal = Input.GetAxisRaw("Horizontal");
         moveVertical = Input.GetAxisRaw("Vertical");
 
-        if(isTopDown)
+        if (isTopDown)
         {
             // No gravity
             rb2D.gravityScale = 0f;
@@ -93,7 +93,7 @@ public class heartController : MonoBehaviour
         if (isPlatformer)
         {
             // Set Gravity Back
-            rb2D.gravityScale = 2f;
+            rb2D.gravityScale = 1.5f;
 
             // Dash
             if (Input.GetKeyDown(KeyCode.LeftShift) && canDash)
