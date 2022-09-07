@@ -10,6 +10,8 @@ public class Player : MonoBehaviour
     public Animator animator;
     Vector2 movement;
 
+    private NPC_Controller npc;
+
     // Parameter for Battle trigger
     [SerializeField]
     private LayerMask enemiesLayer;
@@ -31,26 +33,30 @@ public class Player : MonoBehaviour
 
     void Update()
     {
-        if (playerControlsEnabled)
+        if (!inDialogue())
         {
-            // Get Input Values
-            movement.x = Input.GetAxisRaw("Horizontal");
-            movement.y = Input.GetAxisRaw("Vertical");
-        }
-        else
-        {
-            // Set Input Values to 0
-            movement = new Vector2();
-        }
 
-        animator.SetFloat("Horizontal", movement.x);
-        animator.SetFloat("Vertical", movement.y);
-        animator.SetFloat("Speed", movement.sqrMagnitude);
+            if (playerControlsEnabled)
+            {
+                // Get Input Values
+                movement.x = Input.GetAxisRaw("Horizontal");
+                movement.y = Input.GetAxisRaw("Vertical");
+            }
+            else
+            {
+                // Set Input Values to 0
+                movement = new Vector2();
+            }
 
-        // If player moves => Start CheckForEncounters() function
-        if((Input.GetAxisRaw("Horizontal") != 0) || (Input.GetAxisRaw("Vertical") != 0))
-        {
-            CheckForEncounters();
+            animator.SetFloat("Horizontal", movement.x);
+            animator.SetFloat("Vertical", movement.y);
+            animator.SetFloat("Speed", movement.sqrMagnitude);
+
+            // If player moves => Start CheckForEncounters() function
+            if ((Input.GetAxisRaw("Horizontal") != 0) || (Input.GetAxisRaw("Vertical") != 0))
+            {
+                CheckForEncounters();
+            }
         }
     }
 
@@ -72,5 +78,28 @@ public class Player : MonoBehaviour
                 battleLoader.LoadBattleScene("BattleScene");
             }
         }
+    }
+
+    private bool inDialogue()
+    {
+        if (npc != null)
+            return npc.DialogueActive();
+        else
+            return false;
+    }
+
+    private void OnTriggerStay2D(Collider2D collision)
+    {
+        if (collision.gameObject.tag == "NPC")
+        {
+            npc = collision.gameObject.GetComponent<NPC_Controller>();
+                
+            if (Input.GetKey(KeyCode.E))
+                npc.ActivateDialogue();
+        }
+    }
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        npc = null;
     }
 }
