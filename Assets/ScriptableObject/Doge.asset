@@ -9,8 +9,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c8d0fb3f411d28241ab085f77a6c6f30, type: 3}
-  m_Name: Ronaldo
+  m_Script: {fileID: 11500000, guid: d08417675be3e7441a1bf27d9d06ebaa, type: 3}
+  m_Name: Doge
   m_EditorClassIdentifier: 
-  Health: 100
-  sprite: {fileID: 21300000, guid: 272c2cf943a30ed46a36897c5fbb654b, type: 3}
+  enemyName: Doge
+  enemyModel: {fileID: 6669626189341125104, guid: 05ebedad6093b594a977c581a5df1895, type: 3}
+  battleIntroText: A giga doge appeared from the backrooms
+  scaleX: 0.1
+  scaleY: 0.1
